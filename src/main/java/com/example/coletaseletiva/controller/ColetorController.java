@@ -25,9 +25,9 @@ public class ColetorController {
     private final ColetorRepository coletorRepository;
 
     @GetMapping
-    public List<Coletor> buscarColetores(){
+    public List<ColetorResponse> buscarColetores(){
         List <Coletor> coletores = coletorRepository.findAll();
-        return coletores;
+        return ColetorResponse.convert(coletores);
     }
 
     @PostMapping
