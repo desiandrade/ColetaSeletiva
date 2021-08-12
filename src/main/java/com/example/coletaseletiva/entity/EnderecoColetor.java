@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Endereco {
+public class EnderecoColetor {
 
     @Id
     private int idEndereco;

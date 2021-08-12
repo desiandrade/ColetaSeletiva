@@ -2,6 +2,8 @@ package com.example.coletaseletiva.controller;
 
 import com.example.coletaseletiva.entity.Coletor;
 import com.example.coletaseletiva.repository.ColetorRepository;
+import com.example.coletaseletiva.request.ColetorRequest;
+import com.example.coletaseletiva.response.ColetorResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,12 +31,13 @@ public class ColetorController {
     }
 
     @PostMapping
-    public ResponseEntity<Coletor> adicionarColetor(
-            @RequestBody Coletor coletor,
+    public ResponseEntity<ColetorResponse> adicionarColetor(
+            @RequestBody ColetorRequest coletorRequest,
             UriComponentsBuilder uriComponentsBuilder){
+        Coletor coletor = coletorRequest.convert();
         coletorRepository.save(coletor);
         URI uri = uriComponentsBuilder.path("/coletores/{idColetor}").buildAndExpand(coletor.getIdColetor()).toUri();
-        return ResponseEntity.created(uri).body(coletor);
+        return ResponseEntity.created(uri).body(new ColetorResponse(coletor));
     }
 
 

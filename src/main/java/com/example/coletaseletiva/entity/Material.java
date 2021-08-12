@@ -19,6 +19,4 @@ public class Material {
     @Id
     private int idMaterial;
     private String nomeMaterial;
-
-
 }
