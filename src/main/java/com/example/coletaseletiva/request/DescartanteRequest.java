@@ -2,9 +2,15 @@ package com.example.coletaseletiva.request;
 
 
 import com.example.coletaseletiva.entity.Descartante;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Date;
 
+@AllArgsConstructor
+@Getter
+@Setter
 public class DescartanteRequest {
 
     private String cpf;

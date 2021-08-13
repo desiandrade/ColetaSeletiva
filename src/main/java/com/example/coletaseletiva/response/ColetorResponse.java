@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +16,7 @@ public class ColetorResponse {
     @Getter  private String cpf;
     @Getter  private String nome;
     @Getter  private String sobrenome;
-    @Getter  private Date dataNascimento;
+    @Getter  private LocalDate dataNascimento;
 
     public ColetorResponse(Coletor coletor){
         this.idColetor = coletor.getIdColetor();
