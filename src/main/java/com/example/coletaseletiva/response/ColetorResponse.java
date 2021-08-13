@@ -4,14 +4,14 @@ import com.example.coletaseletiva.entity.Coletor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ColetorResponse {
 
 
-    @Getter  private int idColetor;
+    @Getter  private Integer idColetor;
     @Getter  private String cpf;
     @Getter  private String nome;
     @Getter  private String sobrenome;

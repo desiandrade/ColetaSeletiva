@@ -4,13 +4,15 @@ import com.example.coletaseletiva.entity.Coletor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.sql.Date;
 
 @Getter
 @Setter
 public class ColetorRequest {
 
-    private int idColetor;
     private String cpf;
     private String nome;
     private String sobrenome;
@@ -18,7 +20,14 @@ public class ColetorRequest {
 
     public Coletor convert(){
 
-        return new Coletor(idColetor, cpf,nome,sobrenome,dataNascimento);
+        Coletor coletor = new Coletor();
+
+        coletor.setCpf(this.cpf);
+        coletor.setNome(this.nome);
+        coletor.setSobrenome(this.sobrenome);
+        coletor.setDataNascimento(this.dataNascimento);
+
+        return coletor;
 
     }
 
