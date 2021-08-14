@@ -10,7 +10,6 @@ import lombok.Setter;
 @Setter
 public class EnderecoColetorRequest {
 
-
     private String nomeRuaAvenida;
     private Integer numero;
     private String complemento;

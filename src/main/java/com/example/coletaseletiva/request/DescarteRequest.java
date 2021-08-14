@@ -43,7 +43,6 @@ public class DescarteRequest {
         descarte.setVolumeEmLitros(this.volumeEmLitros);
         descarte.setIdColetor(coletor);
         descarte.setIdDescartante(descartante);
-//        descarte.setIdMaterial(idMaterial);
 
         return descarte;
 
