@@ -40,8 +40,6 @@ public class DescarteController {
             @RequestBody DescarteRequest descarteRequest,
             UriComponentsBuilder uriComponentsBuilder) throws Exception {
 
-        Descarte descarte1 = new Descarte();
-
         Coletor coletor = coletorRepository.findById(descarteRequest.getIdColetor())
                 .orElseThrow(()-> new Exception());
 
