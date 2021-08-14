@@ -38,7 +38,8 @@ public class ColetorController {
             UriComponentsBuilder uriComponentsBuilder){
         Coletor coletor = coletorRequest.convert();
         coletorRepository.save(coletor);
-        URI uri = uriComponentsBuilder.path("/coletores/{idColetor}").buildAndExpand(coletor.getIdColetor()).toUri();
+        URI uri = uriComponentsBuilder.path("/coletores/{idColetor}")
+                .buildAndExpand(coletor.getIdColetor()).toUri();
         return ResponseEntity.created(uri).body(new ColetorResponse(coletor));
     }
 
@@ -57,9 +58,5 @@ public class ColetorController {
         coletorRepository.deleteById(idColetor);
         return ResponseEntity.ok().build();
     }
-
-
-
-
 
 }

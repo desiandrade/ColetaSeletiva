@@ -1,6 +1,7 @@
 package com.example.coletaseletiva.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,17 +12,18 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 public class EnderecoColetor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEndereco;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idEndereco;
     private String nomeRuaAvenida;
-    private int numero;
+    private Integer numero;
     private String complemento;
     private String bairro;
-    private int cep;
+    private Integer cep;
     private String cidade;
     private String estado;
 
