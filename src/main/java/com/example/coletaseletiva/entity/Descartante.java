@@ -23,6 +23,4 @@ public class Descartante {
     private String nome;
     private String sobrenome;
     private Date dataNascimento;
-
-
 }

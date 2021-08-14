@@ -12,8 +12,11 @@ import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,7 +34,7 @@ public class EnderecoColetorController {
     private final ColetorRepository coletorRepository;
 
     @GetMapping
-    public ResponseEntity<List<EnderecoColetorResponse>> buscarEnderecosColetores(){
+    public ResponseEntity<List<EnderecoColetorResponse>> buscarEnderecosColetores() {
         List<EnderecoColetor> enderecosColetores = enderecoColetorRepository.findAll();
         return ResponseEntity.ok().body(EnderecoColetorResponse.convert(enderecosColetores));
     }
@@ -40,13 +43,33 @@ public class EnderecoColetorController {
     public ResponseEntity<EnderecoColetorResponse> adicionarEnderecoColetor(
             @RequestBody EnderecoColetorRequest enderecoColetorRequest,
             UriComponentsBuilder uriComponentsBuilder
-            ) throws Exception {
+    ) throws Exception {
         Coletor coletor = coletorRepository.findById(enderecoColetorRequest.getIdColetor())
                 .orElseThrow(Exception::new);
         EnderecoColetor enderecoColetor = enderecoColetorRequest.convert(coletor);
-              enderecoColetorRepository.save(enderecoColetor);
+        enderecoColetorRepository.save(enderecoColetor);
         URI uri = uriComponentsBuilder.path("/enderecoColetor/{idEnderecoColetor}")
                 .buildAndExpand(enderecoColetor.getIdEndereco()).toUri();
         return ResponseEntity.created(uri).body(new EnderecoColetorResponse(enderecoColetor));
     }
+
+    @PutMapping("/{idEnderecoColetor}")
+    public ResponseEntity<EnderecoColetorResponse> atualizar(
+            @PathVariable Integer idEnderecoColetor,
+            @RequestBody EnderecoColetorRequest enderecoColetorRequest
+    ) throws Exception {
+        Coletor coletor = coletorRepository.findById(enderecoColetorRequest.getIdColetor())
+                .orElseThrow(Exception::new);
+        EnderecoColetor enderecoColetor = enderecoColetorRequest.convertAtualizar(idEnderecoColetor, coletor);
+        enderecoColetorRepository.save(enderecoColetor);
+        return ResponseEntity.ok(new EnderecoColetorResponse(enderecoColetor));
+    }
+    //tratar o erro se ele nao receber o id de coletor
+
+    @DeleteMapping("{idEnderecoColetor}")
+    public ResponseEntity<?> remover(@PathVariable Integer idEnderecoColetor){
+        enderecoColetorRepository.deleteById(idEnderecoColetor);
+        return ResponseEntity.ok().build();
+    }
 }
+

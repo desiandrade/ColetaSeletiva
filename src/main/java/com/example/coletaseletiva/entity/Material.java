@@ -19,7 +19,7 @@ import javax.persistence.Id;
 public class Material {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMaterial;
     private String nomeMaterial;
 }
