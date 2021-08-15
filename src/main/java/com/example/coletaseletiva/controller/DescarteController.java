@@ -62,19 +62,24 @@ public class DescarteController {
         return ResponseEntity.created(uri).body(new DescarteResponse(descarte));
     }
 
-    @PutMapping("/{idColetor}")
-    public ResponseEntity<ColetorResponse> atualizar(
-            @PathVariable Integer idColetor,
-            @RequestBody ColetorRequest coletorRequest
-    ) {
-        Coletor coletor = coletorRequest.convertAtualizar(idColetor);
-        coletorRepository.save(coletor);
-        return ResponseEntity.ok(new ColetorResponse(coletor));
-    }
+//    @PutMapping("/{idDescarte}")
+//    public ResponseEntity<DescarteResponse> atualizar(
+//            @PathVariable Integer idColetor,
+//            @RequestBody ColetorRequest coletorRequest
+//    ) {
+//        Coletor coletor = coletorRequest.convertAtualizar(idColetor);
+//        coletorRepository.save(coletor);
+//        return ResponseEntity.ok(new ColetorResponse(coletor));
+//    }
 
-    @DeleteMapping("/{idColetor}")
-    public ResponseEntity<?> remover(@PathVariable Integer idColetor){
-        coletorRepository.deleteById(idColetor);
+    @DeleteMapping("/{idDescarte}")
+    public ResponseEntity<?> remover(@PathVariable Integer idDescarte) throws Exception {
+
+        Descarte descarte = descarteRepository.findById(idDescarte)
+                .orElseThrow(()-> new Exception());
+        descarte.setAtivo(false);
+        descarteRepository.save(descarte);
+
         return ResponseEntity.ok().build();
     }
 
