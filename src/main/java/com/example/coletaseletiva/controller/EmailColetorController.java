@@ -44,7 +44,7 @@ public class EmailColetorController {
         emailColetorRepository.save(emailColetor);
 
         URI uri = uriComponentsBuilder.path("/emailColetor/{idEmail}")
-                .buildAndExpand(coletor.getIdColetor()).toUri();
+                .buildAndExpand(emailColetor.getIdColetor()).toUri();
         return ResponseEntity.created(uri).body(emailColetor);
     }
 

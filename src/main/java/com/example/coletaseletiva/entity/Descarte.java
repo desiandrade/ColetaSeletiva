@@ -33,10 +33,12 @@ public class Descarte {
 
     @OneToOne
     @JoinColumn (name = "idDescartante", referencedColumnName = "idDescartante")
+    @NotNull
     Descartante idDescartante;
 
     @OneToOne
     @JoinColumn (name = "idMaterial", referencedColumnName = "idMaterial")
+    @NotNull
     Material idMaterial;
 
 

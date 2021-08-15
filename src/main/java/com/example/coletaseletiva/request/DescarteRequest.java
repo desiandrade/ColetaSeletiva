@@ -10,6 +10,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -18,10 +19,10 @@ import java.util.Optional;
 public class DescarteRequest {
 
     private Date dataDescarte;
-    private Date dataColeta;
-    private Date registroAdicionadoEm;
-    private Date registroModificadoEm;
-    private String obsColetor;
+    //private Date dataColeta;
+    //private Date registroAdicionadoEm;
+    //private Date registroModificadoEm;
+    //private String obsColetor;
     private String obsDescartante;
     private Integer pesoEmKg;
     private Integer volumeEmLitros;
@@ -34,16 +35,17 @@ public class DescarteRequest {
 
         Descarte descarte = new Descarte();
         //Coletor coletor = new Coletor();
-        descarte.setDataColeta(this.dataColeta);
-        descarte.setRegistroAdicionadoEm(this.registroAdicionadoEm);
-        descarte.setRegistroModificadoEm(this.registroModificadoEm);
-        descarte.setObsColetor(this.obsColetor);
+        //descarte.setDataColeta(this.dataColeta);
+        descarte.setRegistroAdicionadoEm(Date.valueOf(LocalDate.now()));
+        descarte.setRegistroModificadoEm(Date.valueOf(LocalDate.now()));
+        //descarte.setObsColetor(this.obsColetor);
         descarte.setObsDescartante(this.obsDescartante);
         descarte.setPesoEmKg(this.pesoEmKg);
         descarte.setVolumeEmLitros(this.volumeEmLitros);
         //descarte.setIdColetor(coletor);
         descarte.setIdDescartante(descartante);
         descarte.setIdMaterial(material);
+        descarte.setAtivo(true);
 
         return descarte;
 
