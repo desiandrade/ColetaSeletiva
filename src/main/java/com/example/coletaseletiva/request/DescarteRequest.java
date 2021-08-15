@@ -25,15 +25,15 @@ public class DescarteRequest {
     private String obsDescartante;
     private Integer pesoEmKg;
     private Integer volumeEmLitros;
-    private Integer idColetor;
+   // private Integer idColetor;
     private Integer idDescartante;
-//    private Material idMaterial;
+    private Integer idMaterial;
 
-    public Descarte convert(Coletor coletor, Descartante descartante) {
+    public Descarte convert(Descartante descartante, Material material) {
 
 
         Descarte descarte = new Descarte();
-
+        //Coletor coletor = new Coletor();
         descarte.setDataColeta(this.dataColeta);
         descarte.setRegistroAdicionadoEm(this.registroAdicionadoEm);
         descarte.setRegistroModificadoEm(this.registroModificadoEm);
@@ -41,8 +41,9 @@ public class DescarteRequest {
         descarte.setObsDescartante(this.obsDescartante);
         descarte.setPesoEmKg(this.pesoEmKg);
         descarte.setVolumeEmLitros(this.volumeEmLitros);
-        descarte.setIdColetor(coletor);
+        //descarte.setIdColetor(coletor);
         descarte.setIdDescartante(descartante);
+        descarte.setIdMaterial(material);
 
         return descarte;
 

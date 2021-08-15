@@ -4,9 +4,11 @@ package com.example.coletaseletiva.controller;
 import com.example.coletaseletiva.entity.Coletor;
 import com.example.coletaseletiva.entity.Descartante;
 import com.example.coletaseletiva.entity.Descarte;
+import com.example.coletaseletiva.entity.Material;
 import com.example.coletaseletiva.repository.ColetorRepository;
 import com.example.coletaseletiva.repository.DescartanteRepository;
 import com.example.coletaseletiva.repository.DescarteRepository;
+import com.example.coletaseletiva.repository.MaterialRepository;
 import com.example.coletaseletiva.request.ColetorRequest;
 import com.example.coletaseletiva.request.DescarteRequest;
 import com.example.coletaseletiva.response.ColetorResponse;
@@ -28,6 +30,7 @@ public class DescarteController {
     private final DescarteRepository descarteRepository;
     private final ColetorRepository coletorRepository;
     private final DescartanteRepository descartanteRepository;
+    private final MaterialRepository materialRepository;
 
     @GetMapping
     public ResponseEntity<List<DescarteResponse>> buscarDescartes(){
@@ -40,16 +43,20 @@ public class DescarteController {
             @RequestBody DescarteRequest descarteRequest,
             UriComponentsBuilder uriComponentsBuilder) throws Exception {
 
-        Coletor coletor = coletorRepository.findById(descarteRequest.getIdColetor())
-                .orElseThrow(()-> new Exception());
+     //   Coletor coletor = coletorRepository.findById(descarteRequest.getIdColetor())
+     //           .orElseThrow(()-> new Exception());
 
         Descartante descartante = descartanteRepository.findById(descarteRequest.getIdDescartante())
                 .orElseThrow(()-> new Exception());
 
+        Material material = materialRepository.findById(descarteRequest.getIdMaterial())
+                .orElseThrow(()-> new Exception());
+
+
 //        Optional<Descartante> descartante = descartanteRepository.findById(descarteRequest.getIdDescartante());
 //        descartante.ifPresent(descarte1::setIdDescartante);
 
-        Descarte descarte = descarteRequest.convert(coletor, descartante);
+        Descarte descarte = descarteRequest.convert(descartante, material);
         descarteRepository.save(descarte);
         URI uri = uriComponentsBuilder.path("/coletores/{idDescarte}").buildAndExpand(descarte.getIdDescarte()).toUri();
         return ResponseEntity.created(uri).body(new DescarteResponse(descarte));

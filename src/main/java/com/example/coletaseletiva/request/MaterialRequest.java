@@ -3,7 +3,6 @@ package com.example.coletaseletiva.request;
 import com.example.coletaseletiva.entity.Material;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 

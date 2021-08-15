@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.sql.Date;
 
 @Getter
@@ -34,10 +35,9 @@ public class Descarte {
     @JoinColumn (name = "idDescartante", referencedColumnName = "idDescartante")
     Descartante idDescartante;
 
-
-//    @OneToOne
-//    @JoinColumn (name = "idMaterial", referencedColumnName = "idMaterial")
-//    Material idMaterial;
+    @OneToOne
+    @JoinColumn (name = "idMaterial", referencedColumnName = "idMaterial")
+    Material idMaterial;
 
 
 

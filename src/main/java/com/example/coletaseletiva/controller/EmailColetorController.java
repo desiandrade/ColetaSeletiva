@@ -43,25 +43,26 @@ public class EmailColetorController {
 
         emailColetorRepository.save(emailColetor);
 
-        URI uri = uriComponentsBuilder.path("/emailColetor/{idColetor}")
+        URI uri = uriComponentsBuilder.path("/emailColetor/{idEmail}")
                 .buildAndExpand(coletor.getIdColetor()).toUri();
         return ResponseEntity.created(uri).body(emailColetor);
     }
 
-//    @PutMapping("/{idEmail}")
-//    public ResponseEntity<EmailColetor> atualizar(
-//            @PathVariable Integer idEmail,
-//            @RequestBody EmailColetorRequest emailColetorRequest
-//    ) {
-//        EmailColetor emailColetor = emailColetorRequest.convertAtualizar(idColetor);
-//        coletorRepository.save(coletor);
-//        return ResponseEntity.ok(new ColetorResponse(coletor));
-//    }
+    @PutMapping("{idEmail}")
+    public ResponseEntity<EmailColetor> atualizar(@PathVariable  Integer idEmail,
+            @RequestBody EmailColetorRequest emailColetorRequest
+    ) throws Exception {
+        Coletor coletor = coletorRepository.findById(emailColetorRequest.getIdColetor())
+                .orElseThrow(Exception::new);
+        EmailColetor emailColetor = emailColetorRequest.convertAtualizar(idEmail, coletor);
+        emailColetorRepository.save(emailColetor);
+        return ResponseEntity.ok(emailColetor);
+    }
 //
-//    @DeleteMapping("/{idColetor}")
-//    public ResponseEntity<?> remover(@PathVariable Integer idColetor){
-//        coletorRepository.deleteById(idColetor);
-//        return ResponseEntity.ok().build();
-//    }
+    @DeleteMapping("/{idEmail}")
+    public ResponseEntity<?> remover(@PathVariable Integer idEmail){
+        emailColetorRepository.deleteById(idEmail);
+        return ResponseEntity.ok().build();
+    }
 
 }

@@ -21,7 +21,7 @@ public class DescarteResponse {
     private Integer volumeEmLitros;
     private Integer idColetor;
     private Integer idDescartante;
-//    private Material material;
+    private String nomeMaterial;
 
 
     public DescarteResponse(Descarte descarte){
@@ -30,9 +30,9 @@ public class DescarteResponse {
         this.obsDescartante = descarte.getObsDescartante();
         this.pesoEmKg = descarte.getPesoEmKg();
         this.volumeEmLitros = descarte.getVolumeEmLitros();
-        this.idColetor = descarte.getIdColetor().getIdColetor();
+//        this.idColetor = descarte.getIdColetor().getIdColetor();
         this.idDescartante = descarte.getIdDescartante().getIdDescartante();
-//        this.material = descarte.getIdMaterial();
+        this.nomeMaterial = descarte.getIdMaterial().getNomeMaterial();
     }
 
     public static List<DescarteResponse> convert(List<Descarte> descartes){

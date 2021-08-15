@@ -2,6 +2,7 @@ package com.example.coletaseletiva.request;
 
 import com.example.coletaseletiva.entity.Coletor;
 import com.example.coletaseletiva.entity.EmailColetor;
+import com.example.coletaseletiva.entity.EnderecoColetor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +28,9 @@ public class EmailColetorRequest {
 
     }
 
-
+    public EmailColetor convertAtualizar(Integer idEmail, Coletor idColetor){
+        return new EmailColetor(idEmail, emailColetor, idColetor);
+    }
 
 
 }
