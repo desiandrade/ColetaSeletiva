@@ -27,7 +27,7 @@ public class TelefoneColetorRequest {
     }
 
     public TelefoneColetor convertAtualizar(Integer idTelefone, Coletor idColetor){
-        return new TelefoneColetor(idTelefone, this.telefoneColetor, idColetor);
+        return new TelefoneColetor(idTelefone, this.telefoneColetor, idColetor, true);
     }
 
 

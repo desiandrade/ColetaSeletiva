@@ -19,7 +19,7 @@ public class MaterialRequest {
     }
 
     public Material convertAtualizar(int idMaterial){
-        return new Material(idMaterial, nomeMaterial);
+        return new Material(idMaterial, nomeMaterial, true);
     }
 
 }

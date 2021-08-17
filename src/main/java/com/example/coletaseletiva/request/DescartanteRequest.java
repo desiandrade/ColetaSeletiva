@@ -32,7 +32,7 @@ public class DescartanteRequest {
 
     public Descartante convertAtualizar(Integer idDescartante) {
 
-        return new Descartante(idDescartante, cpf, nome, sobrenome, dataNascimento);
+        return new Descartante(idDescartante, cpf, nome, sobrenome, dataNascimento, true);
     }
 
 }

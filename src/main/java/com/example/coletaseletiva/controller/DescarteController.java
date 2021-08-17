@@ -11,6 +11,7 @@ import com.example.coletaseletiva.repository.DescarteRepository;
 import com.example.coletaseletiva.repository.MaterialRepository;
 import com.example.coletaseletiva.request.ColetorRequest;
 import com.example.coletaseletiva.request.DescartePutColetorRequest;
+import com.example.coletaseletiva.request.DescartePutDescartanteRequest;
 import com.example.coletaseletiva.request.DescarteRequest;
 import com.example.coletaseletiva.response.ColetorResponse;
 import com.example.coletaseletiva.response.DescarteResponse;
@@ -64,13 +65,14 @@ public class DescarteController {
     }
 
     @PutMapping("/coletor/{idDescarte}")
-    public ResponseEntity<DescarteResponse> atualizar(
+    //TODO Tratar os responses um para cada put
+    public ResponseEntity<DescarteResponse> atualizarDescartePeloColetor(
             @PathVariable Integer idDescarte,
             @RequestBody DescartePutColetorRequest descartePutColetorRequest
     ) throws Exception {
 
         Descarte descarte = descarteRepository.findById(descartePutColetorRequest.getIdDescarte())
-                .orElseThrow(()-> new Exception());
+                .orElseThrow(Exception::new);
 
         Coletor coletor = coletorRepository.findById(descartePutColetorRequest.getIdColetor())
                    .orElse(null);
@@ -79,6 +81,31 @@ public class DescarteController {
         descarteRepository.save(descarteAtualizado);
         return ResponseEntity.ok(new DescarteResponse(descarteAtualizado));
     }
+
+    @PutMapping("/descartante/{idDescarte}")
+    //TODO Tratar os responses um para cada put
+    public ResponseEntity<DescarteResponse> atualizarDescartePeloDescartante(
+            @PathVariable Integer idDescarte,
+            @RequestBody DescartePutDescartanteRequest descartePutDescartanteRequest
+    ) throws Exception {
+
+        Descarte descarte = descarteRepository.findById(descartePutDescartanteRequest.getIdDescarte())
+                .orElseThrow(Exception::new);
+
+        Coletor coletor = coletorRepository.findById(descartePutDescartanteRequest.getIdColetor())
+                .orElse(null);
+
+        Material material = materialRepository.findById(descartePutDescartanteRequest.getIdMaterial())
+                .orElse(null);
+
+        //TODO Um descartante só pode cancelar um descarte se não tiver coletor associado
+
+        Descarte descarteAtualizado = descartePutDescartanteRequest.convert(descarte, coletor, material);
+        descarteRepository.save(descarteAtualizado);
+        return ResponseEntity.ok(new DescarteResponse(descarteAtualizado));
+    }
+
+
 
     @DeleteMapping("/{idDescarte}")
     public ResponseEntity<?> remover(@PathVariable Integer idDescarte) throws Exception {

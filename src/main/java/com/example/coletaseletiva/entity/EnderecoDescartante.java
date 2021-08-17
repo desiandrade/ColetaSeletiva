@@ -27,10 +27,10 @@ public class EnderecoDescartante {
     private String cidade;
     private String estado;
     private String pontoDeReferencia;
-
     @ManyToOne
     @JoinColumn (name = "idDescartante" , referencedColumnName = "idDescartante")
     Descartante idDescartante;
+    private Boolean ativo;
 
 
 }

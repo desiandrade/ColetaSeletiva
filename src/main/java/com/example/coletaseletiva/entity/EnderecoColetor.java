@@ -26,10 +26,10 @@ public class EnderecoColetor {
     private Integer cep;
     private String cidade;
     private String estado;
-
     @ManyToOne
     @JoinColumn (name = "idColetor", referencedColumnName = "idColetor")
     Coletor idColetor;
+    public Boolean ativo;
 
 
 }

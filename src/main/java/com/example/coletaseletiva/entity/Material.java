@@ -16,4 +16,5 @@ public class Material {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMaterial;
     private String nomeMaterial;
+    private Boolean ativo;
 }

@@ -16,9 +16,9 @@ public class TelefoneColetor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idTelefone;
     private Integer TelefoneColetor;
-
     @ManyToOne
     @JoinColumn (name = "idColetor", referencedColumnName = "idColetor")
     Coletor idColetor;
+    private Boolean ativo;
 
 }

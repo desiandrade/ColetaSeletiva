@@ -36,7 +36,7 @@ return EnderecoColetor.builder()
     public EnderecoColetor convertAtualizar(Integer idEnderecoColetor, Coletor idColetor){
 
         return new EnderecoColetor(idEnderecoColetor,nomeRuaAvenida,numero,complemento,
-                bairro,cep,cidade,estado,idColetor);
+                bairro,cep,cidade,estado,idColetor, true);
     }
 
 

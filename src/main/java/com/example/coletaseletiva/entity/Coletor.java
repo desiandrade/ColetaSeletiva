@@ -21,6 +21,7 @@ public class Coletor {
     private String nome;
     private String sobrenome;
     private LocalDate dataNascimento;
+    private Boolean ativo;
 
 
 }

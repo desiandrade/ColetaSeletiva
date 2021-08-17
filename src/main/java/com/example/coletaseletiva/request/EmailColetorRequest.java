@@ -29,7 +29,7 @@ public class EmailColetorRequest {
     }
 
     public EmailColetor convertAtualizar(Integer idEmail, Coletor idColetor){
-        return new EmailColetor(idEmail, emailColetor, idColetor);
+        return new EmailColetor(idEmail, emailColetor, idColetor, true);
     }
 
 

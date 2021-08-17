@@ -34,7 +34,7 @@ public class ColetorRequest {
 
     public Coletor convertAtualizar(Integer idColetor){
 
-        return new Coletor(idColetor,cpf,nome,sobrenome,dataNascimento);
+        return new Coletor(idColetor,cpf,nome,sobrenome,dataNascimento, true);
     }
 
 
