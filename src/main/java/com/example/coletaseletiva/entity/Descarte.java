@@ -26,6 +26,7 @@ public class Descarte {
     private String obsDescartante;
     private Integer pesoEmKg;
     private Integer volumeEmLitros;
+    private Integer idEnderecoDescartante;
     private Boolean ativo;
 
     @OneToOne

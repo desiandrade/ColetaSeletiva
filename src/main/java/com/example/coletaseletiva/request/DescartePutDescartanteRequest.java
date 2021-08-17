@@ -27,6 +27,7 @@ public class DescartePutDescartanteRequest {
     private Integer idColetor;
     //private Integer idDescartante;
     private Integer idMaterial;
+    private Integer idEnderecoDescartante;
 
     public Descarte convert(Descarte descarte, Coletor coletor, Material material) {
 
@@ -40,6 +41,7 @@ public class DescartePutDescartanteRequest {
         descarte.setVolumeEmLitros(this.volumeEmLitros);
         descarte.setIdColetor(coletor);
         descarte.setIdMaterial(material);
+        descarte.setIdEnderecoDescartante(this.idEnderecoDescartante);
         //descarte.setAtivo(true);
 
         return descarte;

@@ -18,12 +18,12 @@ public class EnderecoDescartante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEndereco;
+    private Integer idEndereco;
     private String nomeRuaAvenida;
-    private int numero;
+    private Integer numero;
     private String complemento;
     private String bairro;
-    private int cep;
+    private Integer cep;
     private String cidade;
     private String estado;
     private String pontoDeReferencia;

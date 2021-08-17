@@ -29,6 +29,7 @@ public class DescarteRequest {
    // private Integer idColetor;
     private Integer idDescartante;
     private Integer idMaterial;
+    private Integer idEnderecoDescartante;
 
     public Descarte convert(Descartante descartante, Material material) {
 
@@ -45,6 +46,7 @@ public class DescarteRequest {
         //descarte.setIdColetor(coletor);
         descarte.setIdDescartante(descartante);
         descarte.setIdMaterial(material);
+        descarte.setIdEnderecoDescartante(this.idEnderecoDescartante);
         descarte.setAtivo(true);
 
         return descarte;

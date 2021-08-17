@@ -1,10 +1,7 @@
 package com.example.coletaseletiva.controller;
 
 
-import com.example.coletaseletiva.entity.Coletor;
-import com.example.coletaseletiva.entity.Descartante;
-import com.example.coletaseletiva.entity.Descarte;
-import com.example.coletaseletiva.entity.Material;
+import com.example.coletaseletiva.entity.*;
 import com.example.coletaseletiva.repository.ColetorRepository;
 import com.example.coletaseletiva.repository.DescartanteRepository;
 import com.example.coletaseletiva.repository.DescarteRepository;
@@ -39,6 +36,13 @@ public class DescarteController {
         List <Descarte> descartes = descarteRepository.findAll();
         return ResponseEntity.ok().body(DescarteResponse.convert(descartes));
     }
+
+    @GetMapping("/descarteEndereco/{idDescarte}")
+    public ResponseEntity<List<EnderecoDescartante>> findByIdDescarte(@PathVariable Integer idDescarte){
+        List <EnderecoDescartante> enderecos = descarteRepository.findByIdDescarte(idDescarte);
+        return ResponseEntity.ok().body(enderecos);
+    }
+
 
     @PostMapping
     public ResponseEntity<DescarteResponse> adicionarDescarte(
