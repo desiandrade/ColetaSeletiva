@@ -8,6 +8,7 @@ import com.example.coletaseletiva.repository.EmailColetorRepository;
 import com.example.coletaseletiva.request.ColetorRequest;
 import com.example.coletaseletiva.request.EmailColetorRequest;
 import com.example.coletaseletiva.response.ColetorResponse;
+import com.example.coletaseletiva.response.EmailColetorResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,9 +28,9 @@ public class EmailColetorController {
     private final ColetorRepository coletorRepository;
 
 @GetMapping
-    public ResponseEntity<List<EmailColetor>> buscarEmailsColetor(){
+    public ResponseEntity<List<EmailColetorResponse>> buscarEmailsColetor(){
         List<EmailColetor> emailColetor = emailColetorRepository.findAll();
-        return ResponseEntity.ok().body(emailColetor);
+        return ResponseEntity.ok().body(EmailColetorResponse.convert(emailColetor));
     }
 
     @PostMapping

@@ -8,6 +8,7 @@ import com.example.coletaseletiva.repository.EmailColetorRepository;
 import com.example.coletaseletiva.repository.TelefoneColetorRepository;
 import com.example.coletaseletiva.request.EmailColetorRequest;
 import com.example.coletaseletiva.request.TelefoneColetorRequest;
+import com.example.coletaseletiva.response.TelefoneColetorResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +26,9 @@ public class TelefoneColetorController {
     private final ColetorRepository coletorRepository;
 
 @GetMapping
-    public ResponseEntity<List<TelefoneColetor>> buscarTelefoneColetor(){
+    public ResponseEntity<List<TelefoneColetorResponse>> buscarTelefoneColetor(){
         List<TelefoneColetor> telefonesColetor = telefoneColetorRepository.findAll();
-        return ResponseEntity.ok().body(telefonesColetor);
+        return ResponseEntity.ok().body(TelefoneColetorResponse.convert(telefonesColetor));
     }
 
     @PostMapping
