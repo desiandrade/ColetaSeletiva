@@ -39,6 +39,12 @@ public class EnderecoColetorController {
         return ResponseEntity.ok().body(EnderecoColetorResponse.convert(enderecosColetores));
     }
 
+    @GetMapping("/buscarNome/{nomeColetor}")
+    public ResponseEntity<List<EnderecoColetorResponse>> buscarEnderecosPorColetor(@PathVariable String nomeColetor){
+        List<EnderecoColetor> enderecosColetores = enderecoColetorRepository.findByIdColetorNome(nomeColetor);
+        return ResponseEntity.ok().body(EnderecoColetorResponse.convert(enderecosColetores));
+    }
+
     @PostMapping
     public ResponseEntity<EnderecoColetorResponse> adicionarEnderecoColetor(
             @RequestBody EnderecoColetorRequest enderecoColetorRequest,

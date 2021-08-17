@@ -23,5 +23,4 @@ public class Coletor {
     private LocalDate dataNascimento;
     private Boolean ativo;
 
-
 }

@@ -27,6 +27,7 @@ public class Descarte {
     private Integer pesoEmKg;
     private Integer volumeEmLitros;
     private Boolean ativo;
+
     @OneToOne
     @JoinColumn (name = "idColetor", referencedColumnName = "idColetor")
     Coletor idColetor;

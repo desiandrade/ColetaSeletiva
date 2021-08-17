@@ -31,5 +31,4 @@ public class EnderecoColetor {
     Coletor idColetor;
     public Boolean ativo;
 
-
 }

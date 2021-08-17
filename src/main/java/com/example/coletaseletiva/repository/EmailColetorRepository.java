@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EmailColetorRepository extends JpaRepository <EmailColetor, Integer> {
+
+
 }
