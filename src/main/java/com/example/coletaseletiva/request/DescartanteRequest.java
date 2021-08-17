@@ -5,8 +5,7 @@ import com.example.coletaseletiva.entity.Descartante;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.sql.Date;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @Getter
@@ -16,7 +15,7 @@ public class DescartanteRequest {
     private String cpf;
     private String nome;
     private String sobrenome;
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     public Descartante convert() {
 

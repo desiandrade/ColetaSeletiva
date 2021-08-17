@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Builder;
 
 import javax.persistence.*;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 public class EnderecoDescartante {
 
@@ -28,7 +30,7 @@ public class EnderecoDescartante {
 
     @ManyToOne
     @JoinColumn (name = "idDescartante" , referencedColumnName = "idDescartante")
-    Descartante descartante;
+    Descartante idDescartante;
 
 
 }

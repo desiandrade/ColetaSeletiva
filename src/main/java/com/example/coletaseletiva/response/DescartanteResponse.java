@@ -1,10 +1,9 @@
 package com.example.coletaseletiva.response;
 
-import com.example.coletaseletiva.entity.Coletor;
+
 import com.example.coletaseletiva.entity.Descartante;
 import lombok.Getter;
-
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 @Getter
@@ -16,7 +15,7 @@ public class DescartanteResponse {
         private String cpf;
         private String nome;
         private String sobrenome;
-        private Date dataNascimento;
+        private LocalDate dataNascimento;
 
         public DescartanteResponse(Descartante descartante){
             this.idDescartante = descartante.getIdDescartante();
