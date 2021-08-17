@@ -32,6 +32,12 @@ public class ColetorController {
         return ResponseEntity.ok().body(ColetorResponse.convert(coletores));
     }
 
+    @GetMapping("/buscarNome/{nome}")
+    public ResponseEntity<List<ColetorResponse>> buscarPorNome(@PathVariable String nome){
+        List <Coletor> coletores = coletorRepository.findByNome(nome);
+        return ResponseEntity.ok().body(ColetorResponse.convert(coletores));
+    }
+
     @PostMapping
     public ResponseEntity<ColetorResponse> adicionarColetor(
             @RequestBody ColetorRequest coletorRequest,
