@@ -2,10 +2,7 @@ package com.example.coletaseletiva.controller;
 
 
 import com.example.coletaseletiva.entity.*;
-import com.example.coletaseletiva.repository.ColetorRepository;
-import com.example.coletaseletiva.repository.DescartanteRepository;
-import com.example.coletaseletiva.repository.DescarteRepository;
-import com.example.coletaseletiva.repository.MaterialRepository;
+import com.example.coletaseletiva.repository.*;
 import com.example.coletaseletiva.request.ColetorRequest;
 import com.example.coletaseletiva.request.DescartePutColetorRequest;
 import com.example.coletaseletiva.request.DescartePutDescartanteRequest;
@@ -30,6 +27,7 @@ public class DescarteController {
     private final ColetorRepository coletorRepository;
     private final DescartanteRepository descartanteRepository;
     private final MaterialRepository materialRepository;
+    private final EnderecoDescartanteRepository enderecoDescartanteRepository;
 
     @GetMapping
     public ResponseEntity<List<DescarteResponse>> buscarDescartes(){
@@ -38,9 +36,15 @@ public class DescarteController {
     }
 
     @GetMapping("/descarteEndereco/{idDescarte}")
-    public ResponseEntity<List<EnderecoDescartante>> findByIdDescarte(@PathVariable Integer idDescarte){
-        List <EnderecoDescartante> enderecos = descarteRepository.findByIdDescarte(idDescarte);
-        return ResponseEntity.ok().body(enderecos);
+    public ResponseEntity<EnderecoDescartante> findByIdDescarte(@PathVariable Integer idDescarte) throws Exception {
+
+        Descarte descarte = descarteRepository.findById(idDescarte)
+                .orElseThrow(Exception::new);
+
+        EnderecoDescartante enderecoDescartante = enderecoDescartanteRepository
+                .findByIdDescarte(descarte.getIdEnderecoDescartante());
+
+        return ResponseEntity.ok().body(enderecoDescartante);
     }
 
 
