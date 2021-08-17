@@ -72,7 +72,6 @@ public class DescarteController {
         Descarte descarte = descarteRepository.findById(descartePutColetorRequest.getIdDescarte())
                 .orElseThrow(()-> new Exception());
 
-
         Coletor coletor = coletorRepository.findById(descartePutColetorRequest.getIdColetor())
                    .orElse(null);
 
