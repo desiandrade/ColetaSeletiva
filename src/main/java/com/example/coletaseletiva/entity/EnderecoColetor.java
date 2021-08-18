@@ -30,5 +30,4 @@ public class EnderecoColetor {
     @JoinColumn (name = "idColetor", referencedColumnName = "idColetor")
     Coletor idColetor;
     public Boolean ativo;
-
 }

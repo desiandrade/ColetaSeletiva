@@ -5,6 +5,10 @@ import com.example.coletaseletiva.repository.ColetorRepository;
 import com.example.coletaseletiva.request.ColetorRequest;
 import com.example.coletaseletiva.response.ColetorResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -36,6 +41,13 @@ public class ColetorController {
     public ResponseEntity<List<ColetorResponse>> buscarPorNome(@PathVariable String nome){
         List <Coletor> coletores = coletorRepository.findByNome(nome);
         return ResponseEntity.ok().body(ColetorResponse.convert(coletores));
+    }
+
+    @GetMapping("/buscarPorPagina")
+    public ResponseEntity<Page<ColetorResponse>> buscarPorPagina(Pageable pageable){
+//        Pageable pageable = PageRequest.of(page,3, Sort.unsorted());
+        Page<Coletor> coletores = coletorRepository.findAll(pageable);
+        return ResponseEntity.ok(ColetorResponse.convertPage(coletores));
     }
 
     @PostMapping
