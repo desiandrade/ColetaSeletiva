@@ -3,11 +3,10 @@ package com.example.coletaseletiva.controller;
 
 import com.example.coletaseletiva.entity.*;
 import com.example.coletaseletiva.repository.*;
-import com.example.coletaseletiva.request.ColetorRequest;
 import com.example.coletaseletiva.request.DescartePutColetorRequest;
 import com.example.coletaseletiva.request.DescartePutDescartanteRequest;
 import com.example.coletaseletiva.request.DescarteRequest;
-import com.example.coletaseletiva.response.ColetorResponse;
+import com.example.coletaseletiva.response.DescarteColetorProjecao;
 import com.example.coletaseletiva.response.DescarteResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
@@ -29,10 +27,18 @@ public class DescarteController {
     private final MaterialRepository materialRepository;
     private final EnderecoDescartanteRepository enderecoDescartanteRepository;
 
+
+
     @GetMapping
     public ResponseEntity<List<DescarteResponse>> buscarDescartes(){
         List <Descarte> descartes = descarteRepository.findAll();
         return ResponseEntity.ok().body(DescarteResponse.convert(descartes));
+    }
+
+
+    @GetMapping("/pesquisaLivreDoColetor")
+    public ResponseEntity<List<DescarteColetorProjecao>> findDisponiveis() {
+        return ResponseEntity.ok().body(descarteRepository.findDisponiveis());
     }
 
     @GetMapping("/descarteEndereco/{idDescarte}")
