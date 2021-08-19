@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 public interface DescarteColetorProjecao {
 
+    Integer getIdDescarte();
     LocalDateTime getDataDescarte();
     String getObsDescartante();
     String getNomeMaterial();
