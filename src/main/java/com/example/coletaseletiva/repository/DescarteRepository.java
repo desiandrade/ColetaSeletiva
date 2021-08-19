@@ -33,7 +33,8 @@ public interface DescarteRepository extends JpaRepository <Descarte, Integer> {
             "\tinner join descartante dt on d.id_descartante = dt.id_descartante\n" +
             "\tinner join endereco_descartante ed on ed.id_endereco = d.id_endereco_descartante\n" +
             "\tinner join material m on m.id_material = d.id_material\n" +
-            "\twhere d.ativo = 1", nativeQuery = true)
+            "\twhere d.ativo = 1" +
+            "and d.id_coletor is null", nativeQuery = true)
     List<DescarteColetorProjecao> findDisponiveis();
 
 }
