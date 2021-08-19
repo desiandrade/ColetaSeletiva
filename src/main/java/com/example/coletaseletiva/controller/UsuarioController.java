@@ -3,6 +3,7 @@ package com.example.coletaseletiva.controller;
 
 import com.example.coletaseletiva.entity.Coletor;
 import com.example.coletaseletiva.entity.Usuario;
+import com.example.coletaseletiva.repository.PerfilRepository;
 import com.example.coletaseletiva.repository.UsuarioRepository;
 import com.example.coletaseletiva.request.ColetorRequest;
 import com.example.coletaseletiva.request.UsuarioRequest;
@@ -23,6 +24,7 @@ import java.net.URI;
 public class UsuarioController {
 
     private final UsuarioRepository usuarioRepository;
+    private final PerfilRepository perfilRepository;
 
     @GetMapping("/buscarUsuarios")
     public ResponseEntity<Page<UsuarioResponse>> buscarUsuarios(Pageable pageable){
@@ -34,7 +36,7 @@ public class UsuarioController {
     public ResponseEntity<UsuarioResponse> adicionarUsuario(
             @RequestBody UsuarioRequest usuarioRequest,
             UriComponentsBuilder uriComponentsBuilder){
-        Usuario usuario = usuarioRequest.convert();
+        Usuario usuario = usuarioRequest.convert(perfilRepository);
         usuarioRepository.save(usuario);
         URI uri = uriComponentsBuilder.path("/usuarios/{id}")
                 .buildAndExpand(usuario.getId()).toUri();
