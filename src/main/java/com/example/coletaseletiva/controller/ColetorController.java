@@ -90,7 +90,7 @@ public class ColetorController {
     @DeleteMapping("/{idColetor}")
     public ResponseEntity<?> remover(@PathVariable Integer idColetor){
         try { coletorRepository.deleteById(idColetor);
-        return ResponseEntity.ok().body("Coletor de id:" + idColetor + "remocido com sucesso"); }
+        return ResponseEntity.ok().body("Coletor de id:" + idColetor + " removido com sucesso"); }
         catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Coletor não encontrado. Id informado: " + idColetor);
         }

@@ -125,8 +125,6 @@ public class DescarteController {
         return ResponseEntity.ok(new DescarteResponse(descarteAtualizado));
     }
 
-
-
     @DeleteMapping("/{idDescarte}")
     public ResponseEntity<?> remover(@PathVariable Integer idDescarte) throws Exception {
 
