@@ -7,6 +7,7 @@ import com.example.coletaseletiva.request.DescartePutColetorRequest;
 import com.example.coletaseletiva.request.DescartePutDescartanteRequest;
 import com.example.coletaseletiva.request.DescarteRequest;
 import com.example.coletaseletiva.response.DescarteColetorProjecao;
+import com.example.coletaseletiva.response.DescarteDescartanteProjecao;
 import com.example.coletaseletiva.response.DescarteResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,11 @@ public class DescarteController {
     @GetMapping("/pesquisaLivreDoColetor")
     public ResponseEntity<List<DescarteColetorProjecao>> findDisponiveis() {
         return ResponseEntity.ok().body(descarteRepository.findDisponiveis());
+    }
+
+    @GetMapping("/pesquisaDoDescartante/{idDescartante}")
+    public ResponseEntity<List<DescarteDescartanteProjecao>> findDescartesAssociados(@PathVariable Integer idDescartante) {
+        return ResponseEntity.ok().body(descarteRepository.findDescartesAssociados(idDescartante));
     }
 
     @GetMapping("/descarteEndereco/{idDescarte}")

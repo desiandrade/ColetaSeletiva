@@ -24,19 +24,49 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+
+
+
         http
                 .authorizeRequests()
-                //Adicionando uma exceção para um endpoint específico
-                //.antMatchers(HttpMethod.GET, "/descartes/pesquisaLivreDoColetor").permitAll()
-                // exceção para tudo a partir de um endpoint
-                //.antMatchers(HttpMethod.GET, "/material/*").permitAll()
+                .antMatchers("/perfis").hasAuthority("ADMIN")
+                .antMatchers("/perfis/*").hasAuthority("ADMIN")
+                .antMatchers("/usuarios").hasAuthority("ADMIN")
+                .antMatchers("/usuarios/*").hasAuthority("ADMIN")
+                .antMatchers("/material").hasAuthority("ADMIN")
+                .antMatchers("/material/*").hasAuthority("ADMIN")
+                .antMatchers("/telefoneDescartante").hasAnyAuthority("ADMIN", "DESCARTANTE")
+                .antMatchers("/telefoneDescartante/*").hasAnyAuthority("ADMIN", "DESCARTANTE")
+                .antMatchers("/telefoneColetor").hasAnyAuthority("ADMIN", "COLETOR")
+                .antMatchers("/telefoneColetor/*").hasAnyAuthority("ADMIN", "COLETOR")
+                .antMatchers("/emailDescartante").hasAnyAuthority("ADMIN", "DESCARTANTE")
+                .antMatchers("/emailDescartante/*").hasAnyAuthority("ADMIN", "DESCARTANTE")
+                .antMatchers("/emailColetor").hasAnyAuthority("ADMIN", "COLETOR")
+                .antMatchers("/emailColetor/*").hasAnyAuthority("ADMIN", "COLETOR")
+                .antMatchers("/enderecoDescartante").hasAnyAuthority("ADMIN", "DESCARTANTE")
+                .antMatchers("/enderecoDescartante/*").hasAnyAuthority("ADMIN", "DESCARTANTE")
+                .antMatchers("/enderecoColetor").hasAnyAuthority("ADMIN", "COLETOR")
+                .antMatchers("/enderecoColetor/*").hasAnyAuthority("ADMIN", "COLETOR")
+                .antMatchers("/Descartantes").hasAnyAuthority("ADMIN", "DESCARTANTE")
+                .antMatchers("/Descartantes/*").hasAnyAuthority("ADMIN", "DESCARTANTE")
+                .antMatchers("/Coletores").hasAnyAuthority("ADMIN", "COLETOR")
+                .antMatchers("/Coletores/*").hasAnyAuthority("ADMIN", "COLETOR")
+                .antMatchers(HttpMethod.GET, "/descartes").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/descartes/descarteEndereco/*").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/descartes/pesquisaLivreDoColetor").hasAnyAuthority("ADMIN", "COLETOR")
+                .antMatchers(HttpMethod.GET, "/descartes/pesquisaDoDescartante/*").hasAnyAuthority("ADMIN", "DESCARTANTE")
+                .antMatchers(HttpMethod.GET, "/descartes/pesquisaDoDescartante").hasAnyAuthority("ADMIN", "DESCARTANTE")
+                .antMatchers(HttpMethod.DELETE, "/descartes/*").hasAnyAuthority("ADMIN", "DESCARTANTE")
+                .antMatchers(HttpMethod.POST, "/descartes").hasAnyAuthority("ADMIN", "DESCARTANTE")
+                .antMatchers(HttpMethod.PUT, "/descartes/descartante/*").hasAnyAuthority("ADMIN", "DESCARTANTE")
+                .antMatchers(HttpMethod.PUT, "/descartes/coletor/*").hasAnyAuthority("ADMIN", "COLETOR")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .permitAll()
                 .and()
                 .csrf().disable()
-                 .httpBasic();
+                .httpBasic();
 
 
 
@@ -46,13 +76,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        //EM MEMORIA
-//            auth
-//                    .inMemoryAuthentication()
-//                    .passwordEncoder(codificadorPassword())
-//                    .withUser("user")
-//                    .password(codificadorPassword().encode("123"))
-//                    .roles("USER");
 
 
         auth.userDetailsService(autenticacaoService)
