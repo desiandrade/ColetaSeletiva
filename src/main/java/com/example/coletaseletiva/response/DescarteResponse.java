@@ -7,6 +7,7 @@ import lombok.Getter;
 
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +16,7 @@ public class DescarteResponse {
 
 
     private Integer idDescarte;
-    private Date dataDescarte;
+    private Date   dataDescarte;
     private String obsDescartante;
     private Integer pesoEmKg;
     private Integer volumeEmLitros;

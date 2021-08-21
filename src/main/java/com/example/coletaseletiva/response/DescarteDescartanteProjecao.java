@@ -1,16 +1,17 @@
 package com.example.coletaseletiva.response;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 public interface DescarteDescartanteProjecao {
 
     Integer getIdDescarte();
-    LocalDateTime getDataDescarte();
+    Date getDataDescarte();
     String getObsDescartante();
     String getNomeMaterial();
     Integer getPesoEmKg();
     Integer getVolumeEmLitros();
-    LocalDateTime getRegistroAdicionadoEm();
+    Date getRegistroAdicionadoEm();
     String getNomeRuaAvenida();
     Integer getNumero();
     String getComplemento();

@@ -19,14 +19,9 @@ import java.util.Optional;
 public class DescarteRequest {
 
     private Date dataDescarte;
-    //private Date dataColeta;
-    //private Date registroAdicionadoEm;
-    //private Date registroModificadoEm;
-    //private String obsColetor;
     private String obsDescartante;
     private Integer pesoEmKg;
     private Integer volumeEmLitros;
-   // private Integer idColetor;
     private Integer idDescartante;
     private Integer idMaterial;
     private Integer idEnderecoDescartante;
@@ -37,6 +32,7 @@ public class DescarteRequest {
         Descarte descarte = new Descarte();
         //Coletor coletor = new Coletor();
         //descarte.setDataColeta(this.dataColeta);
+        descarte.setDataDescarte(this.dataDescarte);
         descarte.setRegistroAdicionadoEm(Date.valueOf(LocalDate.now()));
         descarte.setRegistroModificadoEm(Date.valueOf(LocalDate.now()));
         //descarte.setObsColetor(this.obsColetor);

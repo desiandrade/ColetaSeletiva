@@ -24,9 +24,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-
-
-
         http
                 .authorizeRequests()
                 .antMatchers("/perfis").hasAuthority("ADMIN")
@@ -47,10 +44,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/enderecoDescartante/*").hasAnyAuthority("ADMIN", "DESCARTANTE")
                 .antMatchers("/enderecoColetor").hasAnyAuthority("ADMIN", "COLETOR")
                 .antMatchers("/enderecoColetor/*").hasAnyAuthority("ADMIN", "COLETOR")
-                .antMatchers("/Descartantes").hasAnyAuthority("ADMIN", "DESCARTANTE")
-                .antMatchers("/Descartantes/*").hasAnyAuthority("ADMIN", "DESCARTANTE")
-                .antMatchers("/Coletores").hasAnyAuthority("ADMIN", "COLETOR")
-                .antMatchers("/Coletores/*").hasAnyAuthority("ADMIN", "COLETOR")
+                .antMatchers("/descartantes").hasAnyAuthority("ADMIN", "DESCARTANTE")
+                .antMatchers("/descartantes/*").hasAnyAuthority("ADMIN", "DESCARTANTE")
+                .antMatchers("/coletores").hasAnyAuthority("ADMIN", "COLETOR")
+                .antMatchers("/coletores/*").hasAnyAuthority("ADMIN", "COLETOR")
                 .antMatchers(HttpMethod.GET, "/descartes").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/descartes/descarteEndereco/*").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/descartes/pesquisaLivreDoColetor").hasAnyAuthority("ADMIN", "COLETOR")
@@ -67,9 +64,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .httpBasic();
-
-
-
 
 
     }

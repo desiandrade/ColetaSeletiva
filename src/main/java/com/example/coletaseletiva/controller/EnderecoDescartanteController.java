@@ -47,7 +47,7 @@ public class EnderecoDescartanteController {
                 .orElseThrow(Exception::new);
         EnderecoDescartante enderecoDescartante = enderecoDescartanteRequest.convert(descartante);
         enderecoDescartanteRepository.save(enderecoDescartante);
-        URI uri = uriComponentsBuilder.path("/enderecoColetor/{idEnderecoColetor}")
+        URI uri = uriComponentsBuilder.path("/enderecoDescartante/{idEnderecoDescartante}")
                 .buildAndExpand(enderecoDescartante.getIdEndereco()).toUri();
         return ResponseEntity.created(uri).body(new EnderecoDescartanteResponse(enderecoDescartante));
     }
